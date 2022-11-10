@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+	<head>
+		<title>1o1o</title>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+		<meta name="viewport" content="width=800" />
+		<meta charset="UTF-8" />
+		<style>
+		html, body { min-width: 800px; padding: 0; margin: 0; font-family: 'Montserrat', helvetica, sans-serif; background: #222; color: #fff; font-size: 20pt; line-height: 1.5; padding: 2%; }
+		h1 { margin: 0; padding: 0; }
+		.teletype-prefix, .teletype-cursor { color: #00bd9c; }
+		</style>
+	</head>
+	<body>
+		<h1>1o1o is working...</h1>
+		<p class="type-text" title="Why ~2at^1000 are you looking for ?;Sorry i'm busy,~5very busy,\n^1000 Please, come back later !">:)</p>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="jquery.teletype.min.js"></script>
+		<script>
+		$( function() {
+			$( '.type-text' ).each( function() {
+				var items = $( this ).attr( 'title' ) + ';' + $( this ).text();
+				var thing = $( this ).empty().attr( 'title', '' ).teletype( {
+					text: items.split( ';' ),
+					typeDelay: 10,
+					backDelay: 20,
+					cursor: '▋',
+					delay: 3000,
+					preserve: false,
+					prefix: '[root ~]# ',
+					loop: 0,
+					callbackType: function( letter, current, teletype ) {
+						if ( current.index == 2 && current.position == 13 ) {
+							teletype.setCursor( '_' );
+						}
+					},
+					callbackNext: function( current, teletype ) {
+						if ( current.index == 3 ) {
+							teletype.setCursor( '▋' );
+						}
+					}
+				} );
+			} );
+		} );
+		</script>
+	</body>
+</html>
